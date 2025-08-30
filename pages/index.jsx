@@ -163,7 +163,7 @@ export default function Home() {
                   {MANGA_TYPE}
                 </span>
                 <span className='px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm font-medium'>
-                  {MANGA_RELEASE}
+                  {/* {MANGA_RELEASE} */}
                 </span>
               </div>
             </div>
