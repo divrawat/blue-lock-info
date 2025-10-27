@@ -89,9 +89,9 @@ export default function Home() {
       <meta name="robots" content="follow, index, noarchive, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
       <meta property="og:url" content={`${DOMAIN}`} />
       <meta property="og:site_name" content={`${APP_NAME}`} />
-      <meta property="og:updated_time" content="2025-01-08T14:16:03+00:00" />
-      <meta property="article:published_time" content="2024-05-24T22:29:53+00:00" />
-      <meta property="article:modified_time" content="2025-25-08T14:16:03+00:00" />
+      <meta property="og:updated_time" content="2025-10-25T14:16:03+00:00" />
+      <meta property="article:published_time" content="2024-09-01T22:29:53+00:00" />
+      <meta property="article:modified_time" content="2025-10-25T14:16:03+00:00" />
       <meta property="og:image" content={`${COVER_IMG}`} />
       <meta property="og:image:secure_url" content={`${COVER_IMG}`} />
       <meta property="og:image:type" content="image/jpg" />
@@ -128,7 +128,7 @@ export default function Home() {
                 <div className="flex flex-col h-full">
                   <div className="mb-6">
                     <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent text-center md:text-left mb-4">
-                      {MANGA_NAME}
+                      {`${MANGA_NAME} Manga`}
                     </h1>
                     <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
                       <span className="px-4 py-1.5 bg-blue-900/60 text-blue-200 rounded-full text-sm font-medium border border-blue-700/30">
@@ -157,7 +157,7 @@ export default function Home() {
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                       </svg>
-                      Buy {MANGA_NAME} Manga
+                      {`Buy ${MANGA_NAME} Manga`}
                     </a>
                   </div>
 
@@ -196,33 +196,28 @@ export default function Home() {
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-center mb-12">
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                {MANGA_NAME} Chapters
+                {MANGA_NAME} Chapters Summary & Manga
               </span>
             </h2>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {chapters.map((chapter, index) => (
                 <Link key={index} href={chapter.url}>
-                  <div className="bg-gray-800/40 hover:bg-blue-900/30 rounded-xl p-4 text-center transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg border border-gray-700/50 hover:border-blue-500/30 cursor-pointer">
-                    <div className="text-lg font-semibold mb-1">Chapter {chapter.number}</div>
-                    <div className="text-xs text-gray-400">2 days ago</div>
+                  <div className="chapter-card">
+                    <div className="chapter-title">{`Chapter ${chapter.number}`}</div>
                   </div>
+
                 </Link>
               ))}
             </div>
 
-            <div className="text-center mt-8">
-              <button className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors duration-300 border border-gray-700/50">
-                Load More Chapters
-              </button>
-            </div>
           </section>
 
           {/* About Section */}
           <section className="bg-gray-900/40 rounded-2xl p-8 mb-16 border border-gray-800/50">
             <h2 className="text-3xl font-bold text-center mb-10">
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                About {MANGA_NAME}
+                {`About ${MANGA_NAME}`}
               </span>
             </h2>
 
@@ -236,37 +231,13 @@ export default function Home() {
           </section>
 
           {/* Latest Chapters */}
-          <section className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-10">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Latest Chapters
-              </span>
-            </h2>
 
-            <div className="bg-gray-900/40 rounded-2xl p-6 border border-gray-800/50">
-              {last5chapters?.map((chapter, index) => (
-                <div key={index} className="py-4 border-b border-gray-800/50 last:border-b-0">
-                  <Link href={`${DOMAIN}/${URL_PREFIX}/${chapter.chapterNumber}`}>
-                    <div className="flex items-center justify-between hover:text-blue-400 transition-colors duration-300 cursor-pointer">
-                      <div className="flex items-center">
-                        <div className="w-10 h-10 rounded-lg bg-blue-900/30 flex items-center justify-center mr-4 border border-blue-700/30">
-                          <span className="text-blue-400 font-semibold">{chapter.chapterNumber}</span>
-                        </div>
-                        <span className="text-lg">{MANGA_NAME} Chapter {chapter.chapterNumber}</span>
-                      </div>
-                      <span className="text-sm text-gray-400">2 days ago</span>
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </section>
 
           {/* Manga Panels */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-center mb-10">
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                {MANGA_NAME} Artwork
+                Artwork
               </span>
             </h2>
 

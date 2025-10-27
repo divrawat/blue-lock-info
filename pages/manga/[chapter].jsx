@@ -16,7 +16,7 @@ import { CgProfile } from "react-icons/cg";
 import { DiscussionEmbed } from 'disqus-react';
 export const runtime = 'experimental-edge';
 
-export default function Chapter({ chapterNumber, imageUrls, totalChapters, params, errorcode, readableDate, views, uploadDateTime, modifiedate }) {
+export default function Chapter({ chapterNumber, imageUrls, totalChapters, params, errorcode, summary, uploadDateTime, modifiedDate, readableDate, formattedSummary }) {
 
     if (errorcode) {
         return (
@@ -37,12 +37,8 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
     const nextChapter = chapterIndex < totalChapters - 1 ? chaptersData[chapterIndex + 1].chapterNumber : null;
 
 
-    const DESCRIPTION = `Read ${MANGA_NAME} chapter ${chapterNumber} online at ${DOMAIN_NAME}. All ${MANGA_NAME} latest manga and manhwa chapters in high quality english are always updated regularly at our website. ${HEADER_MANGA_DESC}`;
+    const DESCRIPTION = `${summary}`;
     const URL = params.chapter;
-
-    const authorname = 'Blue Lock Team'
-
-
 
     const schema =
     {
@@ -54,7 +50,7 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
         },
         "headline": `${APP_NAME} Manga Chapter ${chapterNumber}`,
         "datePublished": uploadDateTime,
-        "dateModified": modifiedate,
+        "dateModified": modifiedDate,
         "author": {
             "@type": "Person",
             "name": `${APP_NAME} Team`
@@ -67,7 +63,7 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
                 "url": `${DOMAIN}/logo.webp`
             }
         },
-        "description": `${HEADER_MANGA_DESC}`
+        "description": `${summary}`
     }
 
 
@@ -85,13 +81,14 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
 
     const head = () => (
         <Head>
-            <title>{`${MANGA_NAME} Chapter ${chapterNumber}`}</title>
+            <title>{`${MANGA_NAME} Chapter ${chapterNumber} Summary & Manga`}</title>
             <meta name="description" content={DESCRIPTION} />
             <link rel="canonical" href={`${DOMAIN}/manga/${URL}`} />
+            <meta name="robots" content="follow, index, noarchive, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
             <meta property="og:title" content={`${MANGA_NAME} Chapter ${chapterNumber}`} />
             <meta property="og:description" content={DESCRIPTION} />
+            <meta property="og:updated_time" content={modifiedDate} />
             <meta property="og:type" content="webiste" />
-            <meta name="robots" content="follow, index, noarchive, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
             <meta property="og:url" content={`${DOMAIN}/manga/${URL}`} />
             <meta property="og:site_name" content={`${APP_NAME}`} />
             <meta property="og:image" content={`${IMAGES_SUBDOMAIN}/chapter-${chapterNumber}/1.webp`} />
@@ -103,11 +100,11 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
 
 
     return (
-        <>
+        <div className='bg-gradient-to-b from-gray-900 to-black'>
             {head()}
             <Navbar />
-            <article>
-                <h1 className="text-3xl font-bold text-center text-[white] px-5 pt-5 md:my-5">{`${MANGA_NAME} Chapter ${chapterNumber}`}</h1>
+            <article className=''>
+                <h1 className="text-3xl font-bold text-center text-[white] px-5 pt-5 md:my-5">{`${MANGA_NAME} Chapter ${chapterNumber}, Summary & Manga`}</h1>
 
                 <section className='flex justify-center px-5 text-[#85e1e6] text-[13px] mb-5'>
                     <div><a href={DOMAIN}>Home</a></div>
@@ -122,14 +119,6 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
                     <div className='flex gap-3 items-center'>
                         <div><CiCalendarDate /></div>
                         <time dateTime={uploadDateTime}>{readableDate}</time>
-                    </div>
-                    <div className='flex gap-3 items-center'>
-                        <div><MdOutlineRemoveRedEye /></div>
-                        <div>{views}</div>
-                    </div>
-                    <div className='flex gap-3 items-center'>
-                        <div><CgProfile /></div>
-                        <div>{authorname}</div>
                     </div>
                 </section>
 
@@ -197,6 +186,21 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
                     </div>
                 </section>
 
+
+
+
+
+                <section className='max-w-[1000px] mx-auto mb-5'>
+                    {formattedSummary.map((para, index) => (
+                        <p key={index} className="mb-4 leading-relaxed text-gray-200">
+                            {para}
+                        </p>
+                    ))}
+                </section>
+
+
+
+
                 <section className='max-w-[1200px] mx-auto mb-5'>
                     {imageUrls.map((imageUrl, index) => (
                         <p className='allimages' key={index}>
@@ -205,36 +209,22 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
                     ))}
                 </section>
 
-                <div className='py-10 bg-[#0f0511]'>
-                    <h2 className='text-4xl text-center text-[white] font-blod px-4 mb-10'>Comment Section</h2>
-                    <section className='max-w-[1000px] mx-auto px-5'>
-                        {/* <DisqusComments url={`/manga/${URL}`} identifier={chapterNumber} title={`${MANGA_NAME} Chapter ${chapterNumber}`} /> */}
-
-                        <DiscussionEmbed shortname='blue-lock'
-                            config={{
-                                url: `${DOMAIN}/manga/${URL}`,
-                                identifier: `${DOMAIN}/manga/${URL}`,
-                                title: `${MANGA_NAME} Chapter ${chapterNumber}`,
-                                language: 'EN'
-                            }}
-                        />
-                    </section>
-                </div>
 
 
 
-                <section className="text-white my-5">
+
+                {/* <section className="text-white my-5">
                     <h2 className="text-3xl text-center my-5">{`${MANGA_NAME} Latest Chapters`}</h2>
                     {last5chapters?.map((chapter, index) => (
                         <li key={index} className="lastchapters"><a href={`${DOMAIN}/${URL_PREFIX}-${chapter.chapterNumber}/`}>{`${MANGA_NAME} Chapter ${chapter.chapterNumber}`}</a></li>
                     ))}
-                </section>
+                </section> */}
 
 
             </article>
 
             <Footer />
-        </>
+        </div>
     );
 }
 
@@ -263,52 +253,45 @@ export async function getServerSideProps({ req, res, params }) {
 
     const totalChapters = chaptersData.length;
     const numImages = chapterData.numImages;
+    const mysummary = chapterData.summary;
+    const summary = mysummary.replace(/\s+/g, ' ').trim();
+
     const imageUrls = getImageUrls(chapterNumber, numImages);
 
 
-    function getRandomUploadDateISO() {
-        const start = new Date('2024-01-01T00:00:00Z').getTime(); // updated start date
-        const end = new Date('2025-08-05T23:59:59Z').getTime();
-        const randomTime = new Date(start + Math.random() * (end - start));
-        return randomTime.toISOString();
-    }
+    const baseDate = new Date("2025-09-07T00:00:00Z");
 
-    function formatUploadDateToReadable(isoDateString) {
-        const date = new Date(isoDateString);
-        const options = { day: 'numeric', month: 'long', year: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
-    }
+    const date = new Date(baseDate);
+    date.setDate(baseDate.getDate() + (parseInt(chapterNumber) - 1));
 
+    const uploadDateTime = date.toISOString();
+    const modifiedDate = new Date(date.getTime() + 2 * 60 * 60 * 1000).toISOString(); // +2 hours
+    const readableDate = date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    });
 
-    function getRandomModifiedDateISO() {
-        const now = new Date();
-        const tenDaysAgo = new Date(now.getTime() - 10 * 24 * 60 * 60 * 1000); // 10 days before now
-        const randomTime = new Date(tenDaysAgo.getTime() + Math.random() * (now.getTime() - tenDaysAgo.getTime()));
-        return randomTime.toISOString();
-    }
+    function splitSummaryBySentences(text, sentencesPerParagraph = 3) {
+        // Split by '.', '!', or '?' keeping the punctuation
+        const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+        const paragraphs = [];
 
-
-
-    function getRandomViews() {
-        const min = 1500;
-        const max = 10000;
-        const randomViews = Math.floor(Math.random() * (max - min + 1)) + min;
-        if (randomViews < 10000) {
-            return (randomViews / 1000).toFixed(1).replace('.0', '') + 'k';
-        } else {
-            return Math.round(randomViews / 1000) + 'k';
+        for (let i = 0; i < sentences.length; i += sentencesPerParagraph) {
+            const para = sentences.slice(i, i + sentencesPerParagraph).join(" ").trim();
+            if (para) paragraphs.push(para);
         }
+
+        return paragraphs;
     }
 
-    const uploadDateTime = getRandomUploadDateISO();
-    const modifiedate = getRandomModifiedDateISO()
-    const readableDate = formatUploadDateToReadable(uploadDateTime);
-    const views = getRandomViews();
+    const formattedSummary = splitSummaryBySentences(summary);
 
 
 
 
-    return { props: { chapterNumber, imageUrls, totalChapters, params, chapterIndex, readableDate, views, uploadDateTime, modifiedate } };
+
+    return { props: { chapterNumber, imageUrls, totalChapters, params, chapterIndex, summary, uploadDateTime, modifiedDate, readableDate, formattedSummary } };
 }
 
 
