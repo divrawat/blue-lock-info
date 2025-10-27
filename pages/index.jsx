@@ -80,10 +80,10 @@ export default function Home() {
 
   const head = () => (
     <Head>
-      <title>{`${MANGA_NAME} Manga Online`}</title>
+      <title>{`${MANGA_NAME} Manga & Summary Online`}</title>
       <meta name="description" content={HEADER_MANGA_DESC} />
       <link rel="canonical" href={`${DOMAIN}`} />
-      <meta property="og:title" content={`${MANGA_NAME} Manga Online`} />
+      <meta property="og:title" content={`${MANGA_NAME} Manga & Summary Online`} />
       <meta property="og:description" content={HEADER_MANGA_DESC} />
       <meta property="og:type" content="webiste" />
       <meta name="robots" content="follow, index, noarchive, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
@@ -128,7 +128,7 @@ export default function Home() {
                 <div className="flex flex-col h-full">
                   <div className="mb-6">
                     <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent text-center md:text-left mb-4">
-                      {`${MANGA_NAME} Manga`}
+                      {`${MANGA_NAME} Manga & Summary`}
                     </h1>
                     <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
                       <span className="px-4 py-1.5 bg-blue-900/60 text-blue-200 rounded-full text-sm font-medium border border-blue-700/30">
