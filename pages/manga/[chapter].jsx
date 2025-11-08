@@ -16,7 +16,7 @@ import { CgProfile } from "react-icons/cg";
 import { DiscussionEmbed } from 'disqus-react';
 export const runtime = 'experimental-edge';
 
-export default function Chapter({ chapterNumber, imageUrls, totalChapters, params, errorcode, summary, uploadDateTime, modifiedDate, readableDate }) {
+export default function Chapter({ chapterNumber, imageUrls, totalChapters, params, errorcode, uploadDateTime, modifiedDate, readableDate }) {
 
     if (errorcode) {
         return (
@@ -37,7 +37,7 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
     const nextChapter = chapterIndex < totalChapters - 1 ? chaptersData[chapterIndex + 1].chapterNumber : null;
 
 
-    const DESCRIPTION = `${summary}`;
+    const DESCRIPTION = `Read ${MANGA_NAME} Chapter ${chapterNumber} online.`;
     const URL = params.chapter;
 
     const schema =
@@ -63,7 +63,7 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
                 "url": `${DOMAIN}/logo.webp`
             }
         },
-        "description": `${summary}`
+        "description": `${DESCRIPTION}`,
     }
 
 
@@ -81,7 +81,7 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
 
     const head = () => (
         <Head>
-            <title>{`${MANGA_NAME} Chapter ${chapterNumber} Summary & Manga`}</title>
+            <title>{`${MANGA_NAME} Chapter ${chapterNumber}`}</title>
             <meta name="description" content={DESCRIPTION} />
             <link rel="canonical" href={`${DOMAIN}/manga/${URL}`} />
             <meta name="robots" content="follow, index, noarchive, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
@@ -104,7 +104,7 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
             {head()}
             <Navbar />
             <article className=''>
-                <h1 className="text-3xl font-bold text-center text-[white] px-5 pt-5 md:my-5">{`${MANGA_NAME} Chapter ${chapterNumber}, Summary & Manga`}</h1>
+                <h1 className="text-3xl font-bold text-center text-[white] px-5 pt-5 md:my-5">{`${MANGA_NAME} Chapter ${chapterNumber}`}</h1>
 
                 <section className='flex justify-center px-5 text-[#85e1e6] text-[13px] mb-5'>
                     <div><a href={DOMAIN}>Home</a></div>
@@ -291,7 +291,7 @@ export async function getServerSideProps({ req, res, params }) {
 
 
 
-    return { props: { chapterNumber, imageUrls, totalChapters, params, chapterIndex, summary, uploadDateTime, modifiedDate, readableDate } };
+    return { props: { chapterNumber, imageUrls, totalChapters, params, chapterIndex, uploadDateTime, modifiedDate, readableDate } };
 }
 
 
