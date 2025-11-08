@@ -16,7 +16,7 @@ import { CgProfile } from "react-icons/cg";
 import { DiscussionEmbed } from 'disqus-react';
 export const runtime = 'experimental-edge';
 
-export default function Chapter({ chapterNumber, imageUrls, totalChapters, params, errorcode, summary, uploadDateTime, modifiedDate, readableDate, formattedSummary }) {
+export default function Chapter({ chapterNumber, imageUrls, totalChapters, params, errorcode, summary, uploadDateTime, modifiedDate, readableDate }) {
 
     if (errorcode) {
         return (
@@ -190,13 +190,13 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
 
 
 
-                <section className='max-w-[1000px] mx-auto mb-5'>
+                {/* <section className='max-w-[1000px] mx-auto mb-5'>
                     {formattedSummary.map((para, index) => (
                         <p key={index} className="mb-4 leading-relaxed text-gray-200">
                             {para}
                         </p>
                     ))}
-                </section>
+                </section> */}
 
 
 
@@ -285,13 +285,13 @@ export async function getServerSideProps({ req, res, params }) {
         return paragraphs;
     }
 
-    const formattedSummary = splitSummaryBySentences(summary);
+    // const formattedSummary = splitSummaryBySentences(summary);
 
 
 
 
 
-    return { props: { chapterNumber, imageUrls, totalChapters, params, chapterIndex, summary, uploadDateTime, modifiedDate, readableDate, formattedSummary } };
+    return { props: { chapterNumber, imageUrls, totalChapters, params, chapterIndex, summary, uploadDateTime, modifiedDate, readableDate } };
 }
 
 
