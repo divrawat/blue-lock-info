@@ -214,7 +214,7 @@ export default function Home() {
           </section>
 
           {/* About Section */}
-          <section className="bg-gray-900/40 rounded-2xl p-8 mb-16 border border-gray-800/50">
+          {/* <section className="bg-gray-900/40 rounded-2xl p-8 mb-16 border border-gray-800/50">
             <h2 className="text-3xl font-bold text-center mb-10">
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 {`About ${MANGA_NAME}`}
@@ -228,7 +228,7 @@ export default function Home() {
                 </p>
               ))}
             </div>
-          </section>
+          </section> */}
 
           {/* Latest Chapters */}
 
