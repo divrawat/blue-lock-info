@@ -9,46 +9,6 @@
     justify-content: center;
 }
 
-.lastchapters{
-  padding: 5px;
-  text-align: center;
-  list-style: none;
-}
-
-
-
-:root {
-  --npprogress-color: red;
-}
-
-.chapter-card {
-  background-color: rgba(31, 41, 55, 0.4); /* bg-gray-800/40 */
-  border-radius: 0.75rem; /* rounded-xl */
-  padding: 1rem; /* p-4 */
-  text-align: center; /* text-center */
-  transition: all 0.3s ease; /* transition-all duration-300 */
-  transform: translateY(0); /* base transform */
-  border: 1px solid rgba(55, 65, 81, 0.5); /* border border-gray-700/50 */
-  cursor: pointer; /* cursor-pointer */
-}
-
-.chapter-card:hover {
-  background-color: rgba(30, 58, 138, 0.3); /* hover:bg-blue-900/30 */
-  transform: translateY(-0.25rem); /* hover:-translate-y-1 */
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
-              0 4px 6px -2px rgba(0, 0, 0, 0.2); /* hover:shadow-lg */
-  border-color: rgba(59, 130, 246, 0.3); /* hover:border-blue-500/30 */
-}
-
-.chapter-title {
-  font-size: 1.125rem; /* text-lg */
-  font-weight: 600; /* font-semibold */
-  margin-bottom: 0.25rem; /* mb-1 */
-}
-
-
-
-
 
 
 body {
@@ -57,33 +17,645 @@ body {
   --dot-color: #222223;
   --dot-size: 1.2px;
   --dot-space: 15px;
-  background: linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) 50% / var(--dot-space) var(--dot-space), linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) 50% / var(--dot-space) var(--dot-space), var(--dot-color);
+  /* background: linear-gradient(90deg, var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) 50% / var(--dot-space) var(--dot-space), linear-gradient(var(--dot-bg) calc(var(--dot-space) - var(--dot-size)), transparent 1%) 50% / var(--dot-space) var(--dot-space), var(--dot-color); */
+}
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
 }
 
 
 
 
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 12px;
-
+/* Navbar container */
+.navbar {
+  /* background-color: #000000; or any color you like */
+  padding: 15px 0;
+  display: flex;
+  justify-content: center; /* centers the menu horizontally */
+  align-items: center;
+  width: 100%;
 }
 
-::-webkit-scrollbar-track {
-  /* background-color: rgb(184, 184, 184); */
-  background: black;
+/* Menu list */
+.nav-menu {
+  display: flex;
+  gap: 40px; /* space between items */
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 10px;
-  /* border: 1px solid white; */
-  background: rgb(51, 51, 51);
+/* Each menu item */
+.nav-item {
+  font-weight: bold;
 }
-/* ----------------------------------------------ScrollBar----------------------------------------- */
+
+/* Link styling */
+.nav-link {
+  text-decoration: none;
+  color: rgb(58, 56, 56);
+  font-size: 18px;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #a5a5f3;
+  text-decoration: underline;
+}
+
+/* Responsive behavior (stack on mobile) */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
 
 
 
+
+
+
+
+/* Social Share Section */
+.social-share {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 20px;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.social-share a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.social-share a:hover {
+  transform: scale(1.05);
+}
+
+.social-facebook {
+  background-color: #1877f2;
+}
+
+.social-reddit {
+  background-color: #ff4500;
+}
+
+.social-twitter {
+  background-color: #1da1f2;
+}
+
+.social-telegram {
+  background-color: #0088cc;
+}
+
+.social-whatsapp {
+  background-color: #25d366;
+}
+
+/* Chapter Navigation Buttons */
+.chapter-nav {
+  max-width: 800px;
+  margin: 20px auto 50px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chapter-nav button {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border: none;
+}
+
+.chapter-nav button:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.chapter-nav button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.chapter-nav .btn-previous {
+  background-color: black;
+  color: white;
+}
+
+.chapter-nav .btn-next {
+  background-color: black;
+  color: white;
+}
+
+.chapter-nav button:disabled {
+  background-color: gray;
+  color: black;
+  cursor: not-allowed;
+}
+
+
+/* Chapter Title */
+.chapter-title {
+  font-size: 2rem; /* text-3xl */
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 20px 0 20px; /* px-5 pt-5 */
+  margin: 20px 0; /* md:my-5 equivalent */
+}
+
+/* Breadcrumb Section */
+.breadcrumb {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+  font-size: 13px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb div {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb .separator {
+  padding: 0 8px;
+}
+
+/* Chapter Meta Section (date, etc.) */
+.chapter-meta {
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* gap-10 */
+  padding-bottom: 20px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.chapter-meta .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* gap-3 */
+}
+
+
+
+
+
+
+
+
+/* Container row for About + Chapters */
+.info-row {
+  display: flex;
+  justify-content: center; /* centers the row horizontally */
+  align-items: center; /* aligns top edges */
+  gap: 150px; /* space between About and Chapters */
+  flex-wrap: wrap; /* wrap on smaller screens */
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+/* About Section */
+.about-section {
+  flex: 1 1 400px; /* grow, shrink, min width 400px */
+  text-align: left;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.about-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: black;
+  margin-bottom: 15px;
+}
+
+/* Last 5 Chapters Section */
+.latest-chapters {
+  flex: 1 1 250px; /* grow, shrink, min width 250px */
+  text-align: left;
+}
+
+.latest-chapters h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.chapters-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chapter-link {
+  text-decoration: none;
+  color: #3b82f6;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.chapter-link:hover {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+
+
+
+
+.header-section {
+  position: relative;
+  text-align: center;
+  padding: 60px 0;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+  color: white;
+}
+
+/* Background image (inside the HTML) */
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fills section nicely */
+  z-index: 0;
+}
+
+/* Transparent overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 41, 59, 0.85); 
+  z-index: 1;
+}
+
+.header-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.header-section h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.header-section h1 a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-section div {
+  font-size: 1.2rem;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+/* Navbar */
+.navbar {
+  /* background: rgba(17, 24, 39, 0.9); */
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(142, 156, 179, 0.5);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #60a5fa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #d1d5db;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #60a5fa;
+}
+
+/* Main Content */
+main {
+  padding: 40px 0;
+}
+
+/* Hero Section */
+.hero-section {
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(17, 24, 39, 0.7), rgba(0, 0, 0, 1));
+  border: 1px solid rgba(55, 65, 81, 0.8);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  margin-bottom: 60px;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .hero-content {
+    flex-direction: row;
+  }
+}
+
+.hero-image {
+  flex: 0 0 320px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-glow {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: rgba(37, 99, 235, 0.5);
+  border-radius: 16px;
+  filter: blur(12px);
+  opacity: 0.75;
+  transition: opacity 0.3s;
+}
+
+.image-container:hover .image-glow {
+  opacity: 1;
+}
+
+.cover-image {
+  position: relative;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s;
+}
+
+.image-container:hover .cover-image {
+  transform: scale(1.05);
+}
+
+.hero-text {
+  flex: 1;
+  padding: 24px;
+}
+
+@media (min-width: 768px) {
+  .hero-text {
+    padding: 32px;
+  }
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #60a5fa, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero-text h1 {
+    text-align: left;
+    font-size: 3rem;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .tags {
+    justify-content: flex-start;
+  }
+}
+
+.tag {
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+.tag-blue {
+  background: rgba(30, 58, 138, 0.6);
+  color: #bfdbfe;
+  border-color: rgba(29, 78, 216, 0.3);
+}
+
+.tag-purple {
+  background: rgba(76, 29, 149, 0.6);
+  color: #e9d5ff;
+  border-color: rgba(126, 34, 206, 0.3);
+}
+
+.tag-cyan {
+  background: rgba(14, 116, 144, 0.6);
+  color: #a5f3fc;
+  border-color: rgba(8, 145, 178, 0.3);
+}
+
+.description {
+  color: black;
+  line-height: 1.7;
+  font-size: 1.125rem;
+  max-width: 700px;
+  text-align: center;
+  margin: auto;
+  padding-top:40px;
+  padding-bottom: 40px;
+}
+
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  
+}
+
+
+
+.manga-heading {
+  font-size: 2.5rem;
+  margin: 40px 0 20px;
+display: flex;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.artwork-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.artwork-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.artwork-image {
+  width: 350px;
+  height: 500px;
+  object-fit: cover; 
+}
+
+
+
+
+
+
+/* Chapters Section */
+.chapters-section {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 40px;
+ color: black;
+  font-weight: bold;
+}
+
+.chapters-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.chapter-item {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.chapter-link {
+  display: inline-block;
+  color: rgb(43, 42, 42); /* Tailwind blue-500 */
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.chapter-link:hover {
+  color: #60a5fa; /* lighter blue on hover */
+  text-decoration: underline;
+}
+
+
+
+
+@media (min-width: 768px) {
+  .artwork-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+
+:root {
+  --npprogress-color: red;
+}
 
 
 /* ------------- NProgress ------------------------------ */
@@ -173,102 +745,23 @@ body {
 
 
 
-
-
-
-
-
-
   
-/* Outer container with horizontal margin */
-.chapter-container {
-  margin-left: 24px; /* same as mx-6 in Tailwind */
-  margin-right: 24px;
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+
 }
 
-/* Main black box */
-.chapter-box {
-  margin-top: 40px;          /* Tailwind mt-10 */
-  margin-bottom: 40px;       /* mb-10 */
-  padding: 12px;             /* py-3 px-3 */
-  background-color: black;
-  /* border: 1px solid #323232; */
-  border-radius: 8px;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-  
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px; /* gap-3 */
+::-webkit-scrollbar-track {
+  /* background-color: rgb(184, 184, 184); */
+  background: black;
 }
 
-@media (min-width: 640px) {
-  .chapter-box {
-    gap: 20px; /* sm:gap-5 */
-  }
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  /* border: 1px solid white; */
+  background: rgb(51, 51, 51);
 }
+/* ----------------------------------------------ScrollBar----------------------------------------- */
 
-/* UL styling */
-.chapter-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: inherit; /* inherits gap from parent flexbox */
-}
-
-/* LI styling (scaling on hover/active) */
-.chapter-item {
-  transition: transform 0.2s ease;
-}
-
-.chapter-item:hover {
-  transform: scale(1.05);
-}
-
-.chapter-item:active {
-  transform: scale(0.95);
-}
-
-/* Link button */
-.chapter-link {
-  display: block;
-  text-align: center;
-  background-color: black;
-  color: white;
-  text-decoration: none;
-  border: 1px solid #292828;
-  border-radius: 6px;
-  width: 110px;
-  padding: 6px;
-  transition: background-color 0.2s ease;
-}
-
-@media (min-width: 640px) {
-  .chapter-link {
-    width: 160px;
-    padding: 20px;
-  }
-}
-
-.chapter-link:hover {
-  background-color: #2c2b2b;
-  text-decoration: underline;
-}
-
-/* Inner text */
-.chapter-text {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-@media (min-width: 640px) {
-  .chapter-text {
-    font-size: 14px;
-  }
-}

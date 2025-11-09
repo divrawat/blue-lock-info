@@ -1,8 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import { DOMAIN, MANGA_NAME, MANGA_DESCRIPTION, MANGA_AUTHOR, MANGA_RELEASE, MANGA_GENRE, APP_DESCRIPTION, APP_NAME, MANGA_SUMMARY, COVER_IMG, AUTHOR_PAGE, LOGO_URL, URL_PREFIX, chaptersData, BEHIND_COVER_IMG, DOMAIN_NAME, MANGA_TYPE, HEADER_MANGA_DESC, last5chapters, CHAPTER_PREFIX } from "@/config";
+import { DOMAIN, MANGA_NAME, MANGA_DESCRIPTION, MANGA_AUTHOR, MANGA_RELEASE, MANGA_GENRE, APP_DESCRIPTION, APP_NAME, MANGA_SUMMARY, COVER_IMG, AUTHOR_PAGE, LOGO_URL, URL_PREFIX, chaptersData, BEHIND_COVER_IMG, DOMAIN_NAME, MANGA_TYPE, HEADER_MANGA_DESC, last5chapters, CHAPTER_PREFIX, ABOUT } from "@/config";
 import Head from "next/head";
+import MyHeader from "@/components/Header";
 
 export default function Home() {
 
@@ -80,7 +81,7 @@ export default function Home() {
 
   const head = () => (
     <Head>
-      <title>{`${MANGA_NAME} Manga & Summary Online`}</title>
+      <title>{`${MANGA_NAME} Manga Online`}</title>
       <meta name="description" content={HEADER_MANGA_DESC} />
       <link rel="canonical" href={`${DOMAIN}`} />
       <meta property="og:title" content={`${MANGA_NAME} Manga & Summary Online`} />
@@ -105,158 +106,81 @@ export default function Home() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-        {head()}
-        <Navbar />
+      {head()}
 
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Hero Section */}
-          <section className="rounded-2xl overflow-hidden bg-gradient-to-br from-blue-900/30 via-gray-900/70 to-black border border-gray-800 shadow-2xl mb-16">
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-80 flex-shrink-0 p-6 flex items-center justify-center">
-                <div className="relative group">
-                  <div className="absolute -inset-2 bg-blue-600/50 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                  <img
-                    className="relative w-full h-auto object-cover rounded-xl shadow-2xl transform group-hover:scale-105 transition duration-300"
-                    src={`${DOMAIN}/cover.webp`}
-                    alt={`${MANGA_NAME} Cover`}
-                  />
-                </div>
-              </div>
+      <MyHeader />
+      <Navbar />
 
-              <div className="flex-1 p-6 md:py-8">
-                <div className="flex flex-col h-full">
-                  <div className="mb-6">
-                    <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent text-center md:text-left mb-4">
-                      {`${MANGA_NAME}`}
-                    </h1>
-                    <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
-                      <span className="px-4 py-1.5 bg-blue-900/60 text-blue-200 rounded-full text-sm font-medium border border-blue-700/30">
-                        {MANGA_TYPE}
-                      </span>
-                      <span className="px-4 py-1.5 bg-purple-900/60 text-purple-200 rounded-full text-sm font-medium border border-purple-700/30">
-                        Action
-                      </span>
-                      <span className="px-4 py-1.5 bg-cyan-900/60 text-cyan-200 rounded-full text-sm font-medium border border-cyan-700/30">
-                        Shounen
-                      </span>
-                    </div>
-                  </div>
+      <main className="container">
+        <article>
 
-                  <p className="text-gray-300 leading-relaxed mb-8 text-lg">
-                    {MANGA_DESCRIPTION}
-                  </p>
+          <header className="manga-header">
+            <h1 className="manga-heading">{MANGA_NAME}</h1>
+          </header>
 
-                  <div className="pb-4">
-                    <a
-                      href="https://www.amazon.com/blue-lock-manga/s?k=blue+lock+manga"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-5 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold rounded-lg shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-blue-500/30 hover:shadow-blue-500/30"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                      </svg>
-                      {`Buy ${MANGA_NAME} Manga`}
-                    </a>
-                  </div>
-
-                  <div className="mt-auto grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-gray-800/60">
-                    <div className="text-center md:text-left">
-                      <p className="text-sm font-semibold text-gray-400 mb-1">Author</p>
-                      <p className="text-base font-medium text-white">{MANGA_AUTHOR}</p>
-                    </div>
-
-                    <div className="text-center md:text-left">
-                      <p className="text-sm font-semibold text-gray-400 mb-1">Status</p>
-                      <p className="text-base font-medium text-green-400">Ongoing</p>
-                    </div>
-
-                    <div className="text-center md:text-left">
-                      <p className="text-sm font-semibold text-gray-400 mb-1">Chapters</p>
-                      <p className="text-base font-medium text-white">314 +</p>
-                    </div>
-
-                    <div className="text-center md:text-left">
-                      <p className="text-sm font-semibold text-gray-400 mb-1">Rating</p>
-                      <div className="flex items-center justify-center md:justify-start">
-                        <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                        <span className="ml-1 text-base font-medium text-white">4.8/5</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Chapters Section */}
-          <section className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                {MANGA_NAME} Chapters Summary & Manga
-              </span>
-            </h2>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {chapters.map((chapter, index) => (
-                <Link key={index} href={chapter.url}>
-                  <div className="chapter-card">
-                    <div className="chapter-title">{`Chapter ${chapter.number}`}</div>
-                  </div>
-
-                </Link>
-              ))}
-            </div>
-
-          </section>
-
-          {/* About Section */}
-          {/* <section className="bg-gray-900/40 rounded-2xl p-8 mb-16 border border-gray-800/50">
-            <h2 className="text-3xl font-bold text-center mb-10">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                {`About ${MANGA_NAME}`}
-              </span>
-            </h2>
-
-            <div className="max-w-3xl mx-auto">
-              {MANGA_SUMMARY.map(paragraph => (
-                <p key={paragraph.id} className="text-gray-300 leading-relaxed mb-6 text-lg">
-                  {paragraph.content}
-                </p>
-              ))}
-            </div>
-          </section> */}
-
-          {/* Latest Chapters */}
-
-
-          {/* Manga Panels */}
-          <section className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-10">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Artwork
-              </span>
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[1, 2, 3, 4, 5].map((num) => (
-                <div key={num} className="rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
+          <div className="entry">
+            <div className="artwork-grid">
+              {[4, 5].map((num) => (
+                <div key={num} className="artwork-item">
                   <img
                     src={`${DOMAIN}/${num}.webp`}
                     alt={`${MANGA_NAME} Panel ${num}`}
-                    className="w-full h-auto"
+                    className="artwork-image"
                   />
                 </div>
               ))}
             </div>
-          </section>
-        </main>
 
-        <Footer />
-      </div>
+
+            <p className="description"> {MANGA_DESCRIPTION} </p>
+
+            <div className="video-section">
+              <h2 className="manga-heading">{MANGA_NAME}</h2>
+              <div className="video-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/1NlWOdTuBLk?si=Jqcq1PQz3THAkFUM&amp;start=2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </div>
+
+            <section className="chapters-section">
+              <h2 className="section-title">All Chapters</h2>
+
+              <ul className="chapters-list">
+                {chapters.map((chapter, index) => (
+                  <li key={index} className="chapter-item">
+                    <Link href={chapter.url} className="chapter-link">
+                      {`${MANGA_NAME}, Chapter ${chapter.number}`}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+
+
+            <div className="info-row">
+              <div className="about-section">
+                <h2>About {MANGA_NAME}</h2>
+                <p>{ABOUT}</p>
+              </div>
+
+              <div className="latest-chapters">
+                <h2>Last 5 Chapters</h2>
+                <div className="chapters-list">
+                  {last5chapters.slice(-5).map((chapter, index) => (
+                    <a key={index} href={`${DOMAIN}/manga/${CHAPTER_PREFIX}-${chapter.chapterNumber}`} className="chapter-link" >
+                      {`${MANGA_NAME} Chapter ${chapter.chapterNumber}`}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </article>
+      </main>
+
+      <Footer />
     </>
   );
 }

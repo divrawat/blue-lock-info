@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Head from 'next/head';
-import { APP_NAME, DOMAIN, MANGA_NAME, NEXT_PREVIOUS_PREFIX, IMAGE_PREFIX, CHAPTER_PREFIX, AUTHOR_PAGE, LOGO_URL, chaptersData, IMAGES_SUBDOMAIN, DOMAIN_NAME, MANGA_GENRE, MANGA_TYPE, last5chapters, URL_PREFIX, HEADER_MANGA_DESC } from '@/config';
+import { APP_NAME, DOMAIN, MANGA_NAME, NEXT_PREVIOUS_PREFIX, IMAGE_PREFIX, CHAPTER_PREFIX, AUTHOR_PAGE, LOGO_URL, chaptersData, IMAGES_SUBDOMAIN, DOMAIN_NAME, MANGA_GENRE, MANGA_TYPE, last5chapters, URL_PREFIX, HEADER_MANGA_DESC, ABOUT } from '@/config';
 import DisqusComments from '@/components/DisQus';
 import { AiFillChrome } from "react-icons/ai";
 import { FaTelegram } from "react-icons/fa";
@@ -14,6 +14,7 @@ import { CiCalendarDate } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { DiscussionEmbed } from 'disqus-react';
+import MyHeader from '@/components/Header';
 export const runtime = 'experimental-edge';
 
 export default function Chapter({ chapterNumber, imageUrls, totalChapters, params, errorcode, uploadDateTime, modifiedDate, readableDate }) {
@@ -100,103 +101,71 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
 
 
     return (
-        <div className='bg-gradient-to-b from-gray-900 to-black'>
+        <div >
             {head()}
+            <MyHeader />
             <Navbar />
-            <article className=''>
-                <h1 className="text-3xl font-bold text-center text-[white] px-5 pt-5 md:my-5">{`${MANGA_NAME} Chapter ${chapterNumber}`}</h1>
+            <article >
 
-                <section className='flex justify-center px-5 text-[#85e1e6] text-[13px] mb-5'>
+
+                <h1 className="chapter-title">
+                    {`${MANGA_NAME} Chapter ${chapterNumber}`}
+                </h1>
+
+                <section className="breadcrumb">
                     <div><a href={DOMAIN}>Home</a></div>
-                    <div className='px-2'>{` -> `}</div>
+                    <div className="separator">{`->`}</div>
                     <div><a href={`${DOMAIN}/${URL_PREFIX}-${chapterNumber}`}>{`${MANGA_NAME} Chapter ${chapterNumber}`}</a></div>
                 </section>
 
-
-
-
-                <section className='flex justify-center gap-10 pb-5 flex-wrap text-[13px] text-white'>
-                    <div className='flex gap-3 items-center'>
-                        <div><CiCalendarDate /></div>
+                <section className="chapter-meta">
+                    <div className="meta-item">
+                        {/* <CiCalendarDate /> */}
                         <time dateTime={uploadDateTime}>{readableDate}</time>
                     </div>
                 </section>
 
 
-
-
-                <section className="flex gap-4 flex-wrap px-5 text-white justify-center mb-3">
-
-
-                    <a href={facebookUrl} className="flex gap-1 items-center bg-blue-600 rounded-md px-2 py-1">
-                        <span><FaFacebook /></span>
-                        <span className={` text-[12px]`}>FaceBook</span>
+                <section className="social-share">
+                    <a href={facebookUrl} className="social-facebook">
+                        {/* <FaFacebook /> */}
+                        <span>Facebook</span>
                     </a>
-
-                    <a href={redditUrl} className="flex gap-1 items-center bg-orange-500 rounded-md px-2 py-1">
-                        <span className="pb-[3px]"><FaRedditAlien /></span>
-                        <span className={` text-[12px]`}>Reddit</span>
+                    <a href={redditUrl} className="social-reddit">
+                        {/* <FaRedditAlien /> */}
+                        <span>Reddit</span>
                     </a>
-
-                    <a href={twitterUrl} className="flex gap-1 items-center bg-blue-500 rounded-md px-2 py-1">
-                        <span><FaTwitter /></span>
-                        <span className={`text-[12px]`}>Twitter</span>
+                    <a href={twitterUrl} className="social-twitter">
+                        {/* <FaTwitter /> */}
+                        <span>Twitter</span>
                     </a>
-
-
-
-                    <a href={telegramUrl} className="flex gap-1 items-center bg-blue-600 rounded-md px-2 py-1">
-                        <span><FaTelegram /></span>
-                        <span className={` text-[12px]`}>Telegram</span>
+                    <a href={telegramUrl} className="social-telegram">
+                        {/* <FaTelegram /> */}
+                        <span>Telegram</span>
                     </a>
-
-                    <a href={whatsappUrl} className="flex gap-1 items-center bg-green-500 rounded-md px-2 py-1">
-                        <span><IoLogoWhatsapp /></span>
-                        <span className={` text-[12px]`}>WhatsApp</span>
+                    <a href={whatsappUrl} className="social-whatsapp">
+                        {/* <IoLogoWhatsapp /> */}
+                        <span>WhatsApp</span>
                     </a>
-
                 </section>
 
+                <section className="chapter-nav">
+                    {previousChapter !== null ? (
+                        <Link href={`${DOMAIN}/${NEXT_PREVIOUS_PREFIX}-${previousChapter}`}>
+                            <button className="btn-previous">Previous</button>
+                        </Link>
+                    ) : (
+                        <button className="btn-previous" disabled>Previous</button>
+                    )}
 
-
-
-
-
-
-                {/* <p className='text-center px-4 pt-2 font-bold text-[white]'>{`You are on ${MANGA_NAME} Chapter ${chapterNumber}.`}</p> */}
-
-                <section className='mx-3 my-7'>
-                    <div className="flex justify-between max-w-[800px] mx-auto md:mb-[50px] mt-5">
-                        {previousChapter !== null ? (
-                            <Link href={`${DOMAIN}/${NEXT_PREVIOUS_PREFIX}-${previousChapter}`}>
-                                <button className="text-[black] text-[13px] hover:scale-105 active:scale-95 transition-transform rounded bg-[white] px-2 py-2 font-semibold">Previous</button>
-                            </Link>
-                        ) : (
-                            <button className="text-[black] text-[13px] rounded bg-[gray] px-2 py-2 font-semibold cursor-not-allowed" disabled>Previous</button>
-                        )}
-
-                        {nextChapter !== null ? (
-                            <Link href={`${DOMAIN}/${NEXT_PREVIOUS_PREFIX}-${nextChapter}`}>
-                                <button className="text-[black] text-[13px] hover:scale-105 active:scale-95 transition-transform rounded bg-[white] px-2 py-2 font-semibold">Next</button>
-                            </Link>
-                        ) : (
-                            <button className="text-[white] text-[13px] rounded bg-[gray] px-2 py-2 font-semibold cursor-not-allowed" disabled>Next</button>
-                        )}
-
-                    </div>
+                    {nextChapter !== null ? (
+                        <Link href={`${DOMAIN}/${NEXT_PREVIOUS_PREFIX}-${nextChapter}`}>
+                            <button className="btn-next">Next</button>
+                        </Link>
+                    ) : (
+                        <button className="btn-next" disabled>Next</button>
+                    )}
                 </section>
-
-
-
-
-
-                {/* <section className='max-w-[1000px] mx-auto mb-5'>
-                    {formattedSummary.map((para, index) => (
-                        <p key={index} className="mb-4 leading-relaxed text-gray-200">
-                            {para}
-                        </p>
-                    ))}
-                </section> */}
 
 
 
@@ -212,17 +181,25 @@ export default function Chapter({ chapterNumber, imageUrls, totalChapters, param
 
 
 
+                <div className="info-row">
+                    <div className="about-section">
+                        <h2>About {MANGA_NAME}</h2>
+                        <p>{ABOUT}</p>
+                    </div>
 
-                {/* <section className="text-white my-5">
-                    <h2 className="text-3xl text-center my-5">{`${MANGA_NAME} Latest Chapters`}</h2>
-                    {last5chapters?.map((chapter, index) => (
-                        <li key={index} className="lastchapters"><a href={`${DOMAIN}/${URL_PREFIX}-${chapter.chapterNumber}/`}>{`${MANGA_NAME} Chapter ${chapter.chapterNumber}`}</a></li>
-                    ))}
-                </section> */}
-
+                    <div className="latest-chapters">
+                        <h2>Last 5 Chapters</h2>
+                        <div className="chapters-list">
+                            {last5chapters.slice(-5).map((chapter, index) => (
+                                <a key={index} href={`${DOMAIN}/manga/${CHAPTER_PREFIX}-${chapter.chapterNumber}`} className="chapter-link" >
+                                    {`${MANGA_NAME} Chapter ${chapter.chapterNumber}`}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
 
             </article>
-
             <Footer />
         </div>
     );

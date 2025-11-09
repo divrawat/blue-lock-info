@@ -8,7 +8,10 @@ export const IMAGES_SUBDOMAIN_LOGO = `${DOMAIN}/chimp.webp`;
 
 // export const MANGA_DESCRIPTION0 = `<a href="${DOMAIN}"><u><b>Vinland Saga</b></u></a>`;
 
-export const MANGA_DESCRIPTION = `It tells the story of Yoichi Isagi, a gifted high school soccer player who joins the mysterious Blue Lock program—a high-stakes training camp created to find and shape Japan’s world-class striker. Handpicked from 300 of the country’s top forwards, Isagi faces fierce rivals and relentless challenges, forcing him to unlock his true potential, sharpen his ego, and learn what it takes to win at all costs.`;
+export const MANGA_DESCRIPTION = `Blue Lock (ブルーロック, Burūrokku) is a shōnen manga written by Muneyuki Kaneshiro and illustrated by Yusuke Nomura. It tells the story of Yoichi Isagi (潔世一, Isagi Yōichi?), a talented high school soccer player who joins the mysterious Blue Lock program—a high-stakes training camp designed to find and create Japan’s world-class striker. Selected from 300 of the country’s top forwards, Isagi faces fierce rivals and relentless challenges, forcing him to unlock his true potential, sharpen his ego, and learn what it takes to win at all costs.`;
+
+
+export const ABOUT = `Blue Lock (ブルーロック, Burūrokku) is a shōnen manga about Yoichi Isagi (潔世一, Isagi Yōichi), a talented high school soccer player who joins the Blue Lock program to become Japan’s top striker. Selected from hundreds of forwards, Isagi must face tough rivals and push his limits to achieve victory.`;
 
 
 
@@ -92,9 +95,6 @@ export const FooterLinks = [
     { text: 'Privacy Policy', href: `${DOMAIN}/privacy-policy` },
     { text: 'Terms & Conditions', href: `${DOMAIN}/terms-and-conditions` }
 ];
-
-
-
 
 export const chaptersData = [
     {
@@ -1564,43 +1564,28 @@ The following day, while eating lunch, Isagi and Nagi observe the other teams th
 
 export const last5chapters = [
     {
-        "chapterNumber": "306",
-        "numImages": 21
+        "chapterNumber": "45",
+        "numImages": 18,
     },
     {
-        "chapterNumber": "307",
-        "numImages": 21
+        "chapterNumber": "46",
+        "numImages": 19,
     },
     {
-        "chapterNumber": "308",
-        "numImages": 20
+        "chapterNumber": "47",
+        "numImages": 20,
     },
     {
-        "chapterNumber": "309",
-        "numImages": 19
+        "chapterNumber": "48",
+        "numImages": 19,
     },
     {
-        "chapterNumber": "310",
-        "numImages": 21
+        "chapterNumber": "49",
+        "numImages": 25,
     },
     {
-        "chapterNumber": "311",
-        "numImages": 21
+        "chapterNumber": "50",
+        "numImages": 22,
     },
-    {
-        "chapterNumber": "312",
-        "numImages": 18
-    },
-    {
-        "chapterNumber": "313",
-        "numImages": 17
-    },
-    {
-        "chapterNumber": "314",
-        "numImages": 11
-    },
-    {
-        "chapterNumber": "314a",
-        "numImages": 10
-    }
+
 ]

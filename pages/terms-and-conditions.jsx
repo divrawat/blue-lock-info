@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import MyHeader from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import { DOMAIN } from "@/config";
 import Head from "next/head";
@@ -18,8 +19,9 @@ const TermsCondition = () => {
     return (
         <>
             {head()}
+            <MyHeader />
             <Navbar />
-            <div className="max-w-[1000px] mx-auto p-5 text-white">
+            <div className="max-w-[1000px] mx-auto p-5 ">
                 <h1 className="text-center font-bold text-3xl my-8">Terms & Conditions</h1>
 
 

@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Head from "next/head";
 import { DOMAIN } from "@/config";
+import MyHeader from "@/components/Header";
 
 const PrivacyPolicy = () => {
 
@@ -17,8 +18,9 @@ const PrivacyPolicy = () => {
     return (
         <>
             {head()}
+            <MyHeader />
             <Navbar />
-            <div className="max-w-[1000px] mx-auto p-5 text-white">
+            <div className="max-w-[1000px] mx-auto p-5">
                 <h1 className="text-center font-bold text-3xl my-8">Return Policy</h1>
 
                 <p className="my-8 leading-[2]">Thanks you for visiting our website. This Return Policy is designed to help you understand how we collect, use, disclose, and safeguard your manga</p>

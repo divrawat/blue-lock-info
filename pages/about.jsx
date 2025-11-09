@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import { MANGA_NAME } from "@/config";
 import Head from "next/head";
 import { DOMAIN } from "@/config";
+import MyHeader from "@/components/Header";
 
 const About = () => {
 
@@ -17,8 +18,9 @@ const About = () => {
     return (
         <>
             {head()}
+            <MyHeader />
             <Navbar />
-            <div className="max-w-[1000px] mx-auto p-5 text-white">
+            <div className="max-w-[1000px] mx-auto p-5">
                 <h1 className="text-center font-bold text-3xl my-8">About</h1>
 
 
